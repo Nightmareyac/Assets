@@ -17,12 +17,13 @@ public class PlayerPrimeAttackState : PlayerState
     {
         base.Enter();
 
+        xInput = 0;
+
         if(comboCounter > 2 || Time.time >= lastTimerAttacked + comboWindow)
             comboCounter = 0;
 
 
         player.anim.SetInteger("ComboCounter", comboCounter);
-        player.anim.speed = 1.2f;
 
         #region Choose attack direction
 

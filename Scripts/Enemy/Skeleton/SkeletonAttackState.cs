@@ -6,14 +6,15 @@ public class SkeletonAttackState : EnemyState
 {
     private Enemy_Skeleton enemy;
 
-    public SkeletonAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public SkeletonAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
-        this.enemy = enemy;
+        this.enemy = _enemy;
     }
 
     public override void Enter()
     {
         base.Enter();
+        enemy.OpenCounterAttackWindow();
     }
 
     public override void Exit()
@@ -27,7 +28,7 @@ public class SkeletonAttackState : EnemyState
     {
         
         base.Update();
-        enemy.rb.velocity = Vector2.zero;
+        enemy.SetZeroVelocity();
         if (triggerCalled)
             stateMachine.ChangeState(enemy.battleState);
     }
